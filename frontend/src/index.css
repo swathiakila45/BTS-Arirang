@@ -17,6 +17,7 @@ body{
   --bg-primary: #0A0906;
   --text-primary: #F2EDE4;
   --gold: #C8A96E;
+  --border-color: rgba(200, 169, 110, 0.15);
 
   /* font  */
   --font-display: 'Cinzel', serif;

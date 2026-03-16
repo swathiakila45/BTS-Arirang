@@ -1,0 +1,96 @@
+/* ── HERO ───────────────────────────────────── */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.hero__title {
+    font-size: clamp(4rem, 15vw, 12rem);
+    font-family: var(--font-display);
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    line-height: 1;
+}
+
+.hero__korean {
+    font-family: var(--font-korean);
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    color: var(--text-secondary);
+    letter-spacing: 0.3em;
+}
+
+.hero__tagline {
+    max-width: 520px;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.8;
+}
+
+/* ── BUTTONS ─────────────────────────────────── */
+.hero__buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    transition: all 300ms ease;
+    text-decoration: none;
+}
+
+.btn--primary {
+    background-color: var(--gold);
+    color: var(--bg-primary);
+}
+
+.btn--primary:hover {
+    background-color: transparent;
+    color: var(--gold);
+}
+
+.btn--secondary {
+    background-color: transparent;
+    color: var(--gold);
+}
+
+.btn--secondary:hover {
+    background-color: var(--gold);
+    color: var(--bg-primary);
+}
+
+/* ── ABOUT ───────────────────────────────────── */
+.about {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.about__heading {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+}
+
+.about__text {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    text-align: justify;
+}
