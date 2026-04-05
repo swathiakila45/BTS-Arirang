@@ -7,7 +7,9 @@ import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import java.util.Base64;
+import java.util.List;
 import java.util.Map;
+import org.springframework.http.HttpMethod;
 
 @Service
 public class SpotifyService {
@@ -49,5 +51,54 @@ public class SpotifyService {
                 TOKEN_URL, request, Map.class);
 
         return response.getBody();
+    }
+
+    public String getClientCredentialsToken() {
+        String credentials = CLIENT_ID + ":" + CLIENT_SECRET;
+        String encoded = Base64.getEncoder()
+                .encodeToString(credentials.getBytes());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.set("Authorization", "Basic " + encoded);
+
+        MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+        body.add("grant_type", "client_credentials");
+
+        RestTemplate rest = new RestTemplate();
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(body, headers);
+
+        ResponseEntity<Map> response = rest.postForEntity(
+                TOKEN_URL, request, Map.class);
+
+        return (String) response.getBody().get("access_token");
+    }
+
+    public List<Map<String, Object>> getAlbumTracks(String albumId) {
+        String token = getClientCredentialsToken();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
+
+        HttpEntity<Void> request = new HttpEntity<>(headers);
+
+        RestTemplate rest = new RestTemplate();
+        ResponseEntity<Map> response = rest.exchange(
+                "https://api.spotify.com/v1/albums/" + albumId + "/tracks",
+                HttpMethod.GET,
+                request,
+                Map.class);
+
+        List<Map<String, Object>> items = (List<Map<String, Object>>) response.getBody().get("items");
+
+        return items.stream().map(track -> {
+            Map<String, Object> simplified = new java.util.HashMap<>();
+            simplified.put("id", track.get("track_number"));
+            simplified.put("title", track.get("name"));
+            int ms = (int) track.get("duration_ms");
+            int minutes = ms / 60000;
+            int seconds = (ms % 60000) / 1000;
+            simplified.put("duration", minutes + ":" + String.format("%02d", seconds));
+            return simplified;
+        }).collect(java.util.stream.Collectors.toList());
     }
 }

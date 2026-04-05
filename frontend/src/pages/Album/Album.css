@@ -1,0 +1,106 @@
+.album-page {
+    min-height: 100vh;
+    padding: 120px 2rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Countdown */
+.countdown-section {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.countdown-label {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+}
+
+.countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.countdown-unit span {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--gold);
+    line-height: 1;
+}
+
+.countdown-unit p {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+/* Tracklist */
+.tracklist-section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.tracklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s ease;
+}
+
+.track-item:hover {
+    background: rgba(200, 169, 110, 0.05);
+}
+
+.track-number {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    width: 1.5rem;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.track-title {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.track-duration {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
